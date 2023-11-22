@@ -9,8 +9,6 @@ def test_apply_v1():
     discount_applier.apply_v1(discount,users)
     assert discount_applier.notifier.getNotifiedUsers() == users
 
-    pass
-
 
 def test_apply_v2():
     # TODO: write a test that fails due to the bug in
@@ -19,8 +17,6 @@ def test_apply_v2():
 
     discount_applier.apply_v2(discount,users)
     assert discount_applier.notifier.getNotifiedUsers() == users
-
-    pass
 
 def init():
     discount_applier = DiscountApplier(Notifier())
