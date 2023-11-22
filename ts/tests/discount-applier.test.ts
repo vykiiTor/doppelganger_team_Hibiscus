@@ -20,7 +20,7 @@ describe("MockNotifier", () => {
   });
 
   describe("applyV1", () => {
-    it("should notify each user with the correct discount message", () => {
+    it("should notify each user", () => {
       const discount = 10;
       const users: User[] = [
         { email: "test@sfr.fr", name: "User1" },
@@ -31,6 +31,22 @@ describe("MockNotifier", () => {
 
       discountApplier.applyV1(discount, users);
 
+      expect(notifySpy).toHaveBeenCalledTimes(users.length);
+    });
+  });
+
+  describe("applyV2", () => {
+    it("should notify each user with the correct discount", () => {
+      const discount = 10;
+      const users: User[] = [
+        { email: "test@sfr.fr", name: "User1" },
+        { email: "secondUser@sfr.fr", name: "User2" },
+      ];
+
+      const notifySpy = jest.spyOn(mockNotifier, "notify");
+      discountApplier.applyV2(discount, users);
+
+      // check that the spy has been called once for each user
       expect(notifySpy).toHaveBeenCalledTimes(users.length);
 
       users.forEach((user, index) => {
