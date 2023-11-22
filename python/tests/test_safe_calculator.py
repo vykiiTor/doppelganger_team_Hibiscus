@@ -1,6 +1,6 @@
 import pytest
 from safe_calculator import SafeCalculator
-
+from unittest.mock import MagicMock
 
 
 def test_divide_should_not_raise_any_error_when_authorized():
