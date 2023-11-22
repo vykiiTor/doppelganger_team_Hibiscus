@@ -12,7 +12,12 @@ def test_send_v1():
 
 def test_send_v2():
     # TODO: write a test that fails due to the bug in MailSender.send_v2
-    pass
+    client = HttpClient()
+    mail_sender = MailSender(client)
+    user = User("victor", "victor@gmail.com")
+    message = "test spt"
+    post = mail_sender.send_v2(user, message)
+    assert(post.code == 200)
 
 class HttpClient:
     def __init__(self):
@@ -24,6 +29,7 @@ class HttpClient:
         self.postedRequest.email = request.email
         self.postedRequest.subject = request.subject
         self.postedRequest.message = request.message
+        self.postedRequest.code = 200 if request.name == "victor" and request.email == "victor@gmail" and request.subject == "New notification" and request.message == "test spt" and baseUrl == "https://api.mailsender.com" else 503
         self.baseUrl = base_url
         return self.postedRequest
     
